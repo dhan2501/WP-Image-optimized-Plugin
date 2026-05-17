@@ -1,0 +1,369 @@
+/* Smart Image Optimizer – Admin Styles */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap');
+
+:root {
+    --sio-bg:       #0f1117;
+    --sio-surface:  #1a1d27;
+    --sio-border:   #2a2d3e;
+    --sio-accent:   #6c63ff;
+    --sio-accent2:  #00d4a0;
+    --sio-text:     #e8eaf0;
+    --sio-muted:    #8b8fa8;
+    --sio-danger:   #ff5c7a;
+    --sio-warning:  #ffb347;
+    --sio-success:  #00d4a0;
+    --sio-radius:   12px;
+    --sio-font:     'DM Sans', sans-serif;
+    --sio-mono:     'JetBrains Mono', monospace;
+}
+
+/* ── Wrapper ── */
+.sio-wrap {
+    font-family: var(--sio-font);
+    max-width: 980px;
+    margin: 20px 0;
+    color: var(--sio-text);
+}
+
+/* ── Header ── */
+.sio-header {
+    background: linear-gradient(135deg, #1e1b4b 0%, #0f172a 60%, #0d1f1a 100%);
+    border: 1px solid var(--sio-border);
+    border-radius: var(--sio-radius);
+    padding: 28px 32px;
+    margin-bottom: 24px;
+    position: relative;
+    overflow: hidden;
+}
+.sio-header::before {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(108,99,255,.25) 0%, transparent 70%);
+    pointer-events: none;
+}
+.sio-logo { display: flex; align-items: center; gap: 18px; }
+.sio-logo-icon {
+    font-size: 40px;
+    background: linear-gradient(135deg, var(--sio-accent), var(--sio-accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 12px rgba(108,99,255,.5));
+}
+.sio-logo h1 {
+    font-size: 24px; font-weight: 700;
+    margin: 0 0 4px; color: #fff;
+}
+.sio-logo p { margin: 0; color: var(--sio-muted); font-size: 14px; }
+
+/* ── Stats Row ── */
+.sio-stats-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+}
+.sio-stat-card {
+    background: var(--sio-surface);
+    border: 1px solid var(--sio-border);
+    border-radius: var(--sio-radius);
+    padding: 20px;
+    text-align: center;
+    transition: border-color .2s;
+}
+.sio-stat-card:hover { border-color: var(--sio-accent); }
+.stat-num { font-size: 28px; font-weight: 700; color: var(--sio-accent); font-family: var(--sio-mono); }
+.stat-label { font-size: 12px; color: var(--sio-muted); margin-top: 4px; }
+
+/* ── Cards ── */
+.sio-card {
+    background: var(--sio-surface);
+    border: 1px solid var(--sio-border);
+    border-radius: var(--sio-radius);
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+.sio-card-header {
+    display: flex; gap: 14px; align-items: flex-start;
+    padding: 20px 24px 16px;
+    border-bottom: 1px solid var(--sio-border);
+}
+.sio-card-header > span { font-size: 22px; margin-top: 2px; }
+.sio-card-header h3 { margin: 0 0 4px; font-size: 16px; font-weight: 600; color: #fff; }
+.sio-card-header p  { margin: 0; font-size: 13px; color: var(--sio-muted); }
+.sio-card-body { padding: 22px 24px; }
+
+/* ── Format Picker ── */
+.sio-format-picker {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+    margin-bottom: 8px;
+}
+.sio-format-card {
+    background: rgba(255,255,255,.04);
+    border: 2px solid var(--sio-border);
+    border-radius: 10px;
+    padding: 14px 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: all .15s;
+}
+.sio-format-card:hover { border-color: var(--sio-accent); background: rgba(108,99,255,.08); }
+.sio-format-card.selected { border-color: var(--sio-accent); background: rgba(108,99,255,.18); }
+.sio-format-card .fmt-icon { font-size: 22px; display: block; margin-bottom: 6px; }
+.sio-format-card strong { display: block; font-size: 13px; color: #fff; }
+.sio-format-card small  { display: block; font-size: 10px; color: var(--sio-muted); margin-top: 2px; }
+
+/* ── Select ── */
+.sio-select {
+    width: 100%;
+    padding: 10px 14px;
+    background: rgba(255,255,255,.06);
+    border: 1px solid var(--sio-border);
+    border-radius: 8px;
+    color: var(--sio-text);
+    font-family: var(--sio-font);
+    font-size: 14px;
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M0 0l6 8 6-8z' fill='%238b8fa8'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+}
+.sio-select:focus { outline: none; border-color: var(--sio-accent); }
+.sio-select option { background: #1a1d27; }
+
+/* ── Quality Slider ── */
+.sio-quality-wrap { display: flex; align-items: center; gap: 16px; }
+.sio-range {
+    flex: 1;
+    -webkit-appearance: none;
+    height: 6px;
+    border-radius: 99px;
+    background: linear-gradient(to right, var(--sio-accent) 82%, var(--sio-border) 82%);
+    outline: none;
+    cursor: pointer;
+}
+.sio-range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    background: var(--sio-accent);
+    box-shadow: 0 0 0 4px rgba(108,99,255,.25);
+    cursor: pointer;
+}
+.sio-quality-val { display: flex; align-items: center; gap: 6px; color: var(--sio-muted); }
+.sio-num-input {
+    width: 58px;
+    padding: 6px 8px;
+    background: rgba(255,255,255,.06);
+    border: 1px solid var(--sio-border);
+    border-radius: 6px;
+    color: #fff; font-family: var(--sio-mono); font-size: 16px; font-weight: 600;
+    text-align: center;
+}
+.sio-quality-presets { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
+.sio-preset {
+    padding: 6px 14px; border-radius: 99px;
+    background: rgba(255,255,255,.06);
+    border: 1px solid var(--sio-border);
+    color: var(--sio-muted); font-size: 12px; cursor: pointer;
+    transition: all .15s;
+}
+.sio-preset:hover, .sio-preset-active {
+    background: rgba(108,99,255,.2);
+    border-color: var(--sio-accent);
+    color: var(--sio-accent);
+}
+
+/* ── Dimensions ── */
+.sio-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.sio-input {
+    width: 100%;
+    padding: 10px 12px;
+    background: rgba(255,255,255,.06);
+    border: 1px solid var(--sio-border);
+    border-radius: 8px;
+    color: #fff; font-family: var(--sio-font); font-size: 14px;
+    margin-top: 6px;
+    box-sizing: border-box;
+}
+.sio-input:focus { outline: none; border-color: var(--sio-accent); }
+.sio-dim-presets { padding: 0 24px 20px; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.sio-dim-presets strong { color: var(--sio-muted); font-size: 12px; margin-right: 4px; }
+.sio-dim-preset {
+    padding: 5px 12px; border-radius: 6px; font-size: 12px;
+    background: rgba(0,212,160,.08); border: 1px solid rgba(0,212,160,.2);
+    color: var(--sio-accent2); cursor: pointer; transition: all .15s;
+}
+.sio-dim-preset:hover { background: rgba(0,212,160,.18); }
+
+/* ── Toggle Rows ── */
+.sio-toggle-row {
+    display: flex; align-items: center; gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(255,255,255,.05);
+}
+.sio-toggle-row:last-child { border-bottom: none; }
+.toggle-icon { font-size: 20px; flex-shrink: 0; } /* legacy */
+.toggle-info { flex: 1; }
+.toggle-info strong { display: block; font-size: 14px; color: #fff; }
+.toggle-info small  { display: block; font-size: 12px; color: var(--sio-muted); margin-top: 2px; }
+
+/* Toggle Switch */
+.sio-toggle-switch { position: relative; display: inline-block; width: 46px; height: 24px; flex-shrink: 0; }
+.sio-toggle-switch input { opacity: 0; width: 0; height: 0; }
+.sio-slider {
+    position: absolute; inset: 0; cursor: pointer;
+    background: rgba(255,255,255,.12);
+    border-radius: 99px; transition: background .2s;
+}
+.sio-slider:before {
+    content: ''; position: absolute;
+    left: 3px; bottom: 3px;
+    width: 18px; height: 18px; border-radius: 50%;
+    background: #fff; transition: transform .2s;
+}
+.sio-toggle-switch input:checked + .sio-slider { background: var(--sio-accent); }
+.sio-toggle-switch input:checked + .sio-slider:before { transform: translateX(22px); }
+
+/* ── Labels ── */
+.sio-label {
+    display: block; font-size: 13px; font-weight: 600;
+    color: var(--sio-muted); text-transform: uppercase; letter-spacing: .04em;
+    margin-bottom: 10px;
+}
+.sio-hint { display: block; font-size: 12px; color: var(--sio-muted); text-transform: none; font-weight: 400; letter-spacing: 0; margin-top: 2px; }
+
+/* ── Buttons ── */
+.sio-save-bar { padding: 16px 0 4px; }
+.sio-btn-primary {
+    padding: 12px 28px; border-radius: 8px; border: none; cursor: pointer;
+    background: linear-gradient(135deg, var(--sio-accent), #9c63ff);
+    color: #fff; font-family: var(--sio-font); font-size: 14px; font-weight: 600;
+    transition: opacity .15s, transform .1s;
+    box-shadow: 0 4px 14px rgba(108,99,255,.35);
+}
+.sio-btn-primary:hover { opacity: .9; transform: translateY(-1px); }
+.sio-btn-stop {
+    padding: 12px 28px; border-radius: 8px; border: none; cursor: pointer;
+    background: var(--sio-danger); color: #fff; font-family: var(--sio-font); font-size: 14px; font-weight: 600;
+}
+.sio-btn-outline {
+    padding: 10px 20px; border-radius: 8px; cursor: pointer;
+    background: transparent; border: 1px solid var(--sio-border);
+    color: var(--sio-muted); font-family: var(--sio-font); font-size: 13px;
+    transition: all .15s;
+}
+.sio-btn-outline:hover { border-color: var(--sio-accent); color: var(--sio-accent); }
+
+/* ── Quick Actions ── */
+.sio-quick-actions { margin-bottom: 20px; }
+.sio-quick-actions h2 { font-size: 16px; color: var(--sio-muted); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 12px; }
+.sio-action-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+.sio-action-btn {
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
+    background: var(--sio-surface); border: 1px solid var(--sio-border);
+    border-radius: var(--sio-radius); padding: 20px 14px; text-align: center;
+    text-decoration: none; color: var(--sio-text); cursor: pointer;
+    transition: all .15s; font-family: var(--sio-font);
+}
+.sio-action-btn:hover { border-color: var(--sio-accent); transform: translateY(-2px); color: var(--sio-text); }
+.sio-action-btn span { font-size: 28px; }
+.sio-action-btn strong { font-size: 13px; color: #fff; }
+.sio-action-btn small { font-size: 11px; color: var(--sio-muted); }
+
+/* ── Features ── */
+.sio-feature-list { margin-bottom: 20px; }
+.sio-feature-list h2 { font-size: 16px; color: var(--sio-muted); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 12px; }
+.sio-features-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.sio-feature-item {
+    display: flex; align-items: center; gap: 12px;
+    background: var(--sio-surface); border: 1px solid var(--sio-border);
+    border-radius: 10px; padding: 14px 16px;
+}
+.sio-feature-item.active { border-color: rgba(0,212,160,.3); }
+.sio-feature-item.inactive { opacity: .55; }
+.feat-icon { font-size: 20px; flex-shrink: 0; }
+.sio-feature-item strong { display: block; font-size: 13px; color: #fff; }
+.sio-feature-item small { display: block; font-size: 11px; color: var(--sio-muted); }
+.feat-status { margin-left: auto; font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 99px; }
+.sio-feature-item.active .feat-status { background: rgba(0,212,160,.15); color: var(--sio-accent2); }
+.sio-feature-item.inactive .feat-status { background: rgba(255,92,122,.1); color: var(--sio-danger); }
+
+/* Dot indicators (replace emoji icons) */
+.feat-dot {
+    width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0;
+    background: var(--sio-border);
+}
+.sio-feature-item.active .feat-dot { background: var(--sio-accent2); box-shadow: 0 0 6px rgba(0,212,160,.5); }
+.sio-feature-item.inactive .feat-dot { background: rgba(255,255,255,.15); }
+
+.toggle-dot {
+    width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0;
+}
+.dot-on  { background: var(--sio-accent2); box-shadow: 0 0 6px rgba(0,212,160,.5); }
+.dot-off { background: rgba(255,255,255,.15); }
+
+/* Card icon (HTML entity) */
+.sio-card-icon {
+    font-size: 22px; flex-shrink: 0; margin-top: 2px;
+    color: var(--sio-accent);
+}
+
+/* ── Notice ── */
+.sio-notice {
+    border-radius: 8px; padding: 12px 18px; margin-bottom: 16px; font-size: 14px;
+}
+.sio-notice-success { background: rgba(0,212,160,.1); border: 1px solid rgba(0,212,160,.3); color: var(--sio-accent2); }
+
+/* ── Bulk ── */
+.sio-bulk-info {
+    display: flex; gap: 30px; justify-content: center;
+    padding: 20px 0; border-bottom: 1px solid var(--sio-border); margin-bottom: 24px;
+}
+.bulk-stat { text-align: center; }
+.bulk-stat span { display: block; font-size: 32px; font-weight: 700; color: var(--sio-accent); font-family: var(--sio-mono); }
+.bulk-stat small { color: var(--sio-muted); font-size: 12px; }
+.sio-progress-wrap { margin: 20px 0; }
+.sio-progress-bar {
+    height: 10px; border-radius: 99px;
+    background: rgba(255,255,255,.08); overflow: hidden;
+}
+.sio-progress-fill {
+    height: 100%; border-radius: 99px; width: 0;
+    background: linear-gradient(90deg, var(--sio-accent), var(--sio-accent2));
+    transition: width .3s ease;
+}
+.sio-progress-label { text-align: center; font-size: 13px; color: var(--sio-muted); margin-top: 8px; }
+.sio-bulk-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 20px; }
+.sio-log {
+    margin-top: 16px; max-height: 280px; overflow-y: auto;
+    border: 1px solid var(--sio-border); border-radius: 8px;
+    font-family: var(--sio-mono); font-size: 12px; background: rgba(0,0,0,.2);
+    padding: 12px;
+}
+.sio-log-line { padding: 3px 0; border-bottom: 1px solid rgba(255,255,255,.04); color: var(--sio-muted); }
+.sio-log-line.ok   { color: var(--sio-success); }
+.sio-log-line.fail { color: var(--sio-danger); }
+
+/* ── Media Library ── */
+.sio-badge {
+    display: inline-block; padding: 3px 9px; border-radius: 99px; font-size: 11px; font-weight: 600;
+}
+.sio-badge-done { background: rgba(0,212,160,.12); color: #00d4a0; border: 1px solid rgba(0,212,160,.3); }
+.sio-optimize-btn { font-size: 11px !important; }
+
+/* ── Settings form links ── */
+.sio-settings-form { margin-top: 0; }
+
+/* ── Responsive ── */
+@media (max-width: 782px) {
+    .sio-stats-row { grid-template-columns: repeat(2, 1fr); }
+    .sio-format-picker { grid-template-columns: repeat(3, 1fr); }
+    .sio-action-grid { grid-template-columns: repeat(2, 1fr); }
+    .sio-features-grid { grid-template-columns: 1fr; }
+    .sio-two-col { grid-template-columns: 1fr; }
+}
